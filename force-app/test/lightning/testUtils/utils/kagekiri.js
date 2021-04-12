@@ -186,24 +186,23 @@ var unesc_1 = createCommonjsModule(function (module, exports) {
     );
 
     function unesc(str) {
-        return str.replace(unescapeRegExp, function (
-            _,
-            escaped,
-            escapedWhitespace
-        ) {
-            var high = '0x' + escaped - 0x10000;
+        return str.replace(
+            unescapeRegExp,
+            function (_, escaped, escapedWhitespace) {
+                var high = '0x' + escaped - 0x10000;
 
-            // eslint-disable-next-line no-self-compare
+                // eslint-disable-next-line no-self-compare
 
-            return high !== high || escapedWhitespace
-                ? escaped
-                : high < 0
-                ? String.fromCharCode(high + 0x10000)
-                : String.fromCharCode(
-                      (high >> 10) | 0xd800,
-                      (high & 0x3ff) | 0xdc00
-                  );
-        });
+                return high !== high || escapedWhitespace
+                    ? escaped
+                    : high < 0
+                    ? String.fromCharCode(high + 0x10000)
+                    : String.fromCharCode(
+                          (high >> 10) | 0xd800,
+                          (high & 0x3ff) | 0xdc00
+                      );
+            }
+        );
     }
 
     module.exports = exports.default;
@@ -4961,21 +4960,25 @@ var attribute = createCommonjsModule(function (module, exports) {
                 selector.push(this._stringFor('operator'));
                 selector.push(this._stringFor('value'));
                 selector.push(
-                    this._stringFor('insensitiveFlag', 'insensitive', function (
-                        attrValue,
-                        attrSpaces
-                    ) {
-                        if (
-                            attrValue.length > 0 &&
-                            !_this2.quoted &&
-                            attrSpaces.before.length === 0 &&
-                            !(_this2.spaces.value && _this2.spaces.value.after)
-                        ) {
-                            attrSpaces.before = ' ';
-                        }
+                    this._stringFor(
+                        'insensitiveFlag',
+                        'insensitive',
+                        function (attrValue, attrSpaces) {
+                            if (
+                                attrValue.length > 0 &&
+                                !_this2.quoted &&
+                                attrSpaces.before.length === 0 &&
+                                !(
+                                    _this2.spaces.value &&
+                                    _this2.spaces.value.after
+                                )
+                            ) {
+                                attrSpaces.before = ' ';
+                            }
 
-                        return defaultAttrConcat(attrValue, attrSpaces);
-                    })
+                            return defaultAttrConcat(attrValue, attrSpaces);
+                        }
+                    )
                 );
             }
 
