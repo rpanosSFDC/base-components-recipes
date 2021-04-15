@@ -7,8 +7,21 @@
 //
 // export { getRecordUi } from 'lwc-wire-service-sfdc-mocks';
 
-const { createLdsTestWireAdapter } = require('@salesforce/wire-service-jest-util');
+// const { createLdsTestWireAdapter } = require('@salesforce/wire-service-jest-util');
+// console.warn(createLdsTestWireAdapter(jest.fn()))
+// console.warn(createLdsTestWireAdapter(jest.fn()).emit())
+//
+// module.exports = {
+//     getRecordUi: createLdsTestWireAdapter(jest.fn())
+// };
 
-module.exports = {
-    getRecordUi: createLdsTestWireAdapter(jest.fn())
-};
+// import { createTestWireAdapter } from '@salesforce/wire-service-jest-util';
+// export const getTodo = createTestWireAdapter();
+
+
+const { createTestWireAdapter } = require('@salesforce/wire-service-jest-util');
+console.warn(createTestWireAdapter(jest.fn()))
+console.warn(createTestWireAdapter(jest.fn()).emit())
+
+module.exports = createTestWireAdapter(jest.fn());
+
