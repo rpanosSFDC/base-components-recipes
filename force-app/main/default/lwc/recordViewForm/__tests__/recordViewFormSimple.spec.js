@@ -28,8 +28,6 @@ describe('record view form', () => {
         // jest.unmock('lightning/uiRecordApi');
 
         uiRecordApi = require('../__raptorMocks__/lightning/uiRecordApi/uiRecordApi');
-
-
     });
 
     it('wires recordUi to input fields', () => {
