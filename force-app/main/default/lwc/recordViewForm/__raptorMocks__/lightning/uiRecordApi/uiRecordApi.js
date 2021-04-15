@@ -23,5 +23,8 @@ const { createTestWireAdapter } = require('@salesforce/wire-service-jest-util');
 console.warn(createTestWireAdapter(jest.fn()))
 console.warn(createTestWireAdapter(jest.fn()).emit())
 
-module.exports = createTestWireAdapter(jest.fn());
+// module.exports = createTestWireAdapter(jest.fn());
 
+module.exports = {
+    getRecordUi: createTestWireAdapter(jest.fn())
+};

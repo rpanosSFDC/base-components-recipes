@@ -20,14 +20,16 @@ jest.mock('lightning/uiRecordApi', () => {
 const mockRecordData = {
     beavis: 'such'
 }
-let getRecordUi;
+let uiRecordApi;
 
 describe('record view form', () => {
     beforeAll(() => {
         // todo why would this cause the pause????
         // jest.unmock('lightning/uiRecordApi');
 
-        getRecordUi = require('../__raptorMocks__/lightning/uiRecordApi/uiRecordApi');
+        uiRecordApi = require('../__raptorMocks__/lightning/uiRecordApi/uiRecordApi');
+
+
     });
 
     it('wires recordUi to input fields', () => {
@@ -38,7 +40,7 @@ describe('record view form', () => {
         element.recordId = DEFAULT_RECORD_ID;
         element.objectApiName = 'Bad_Guy__c';
         document.body.appendChild(element);
-        getRecordUi.emit(mockRecordData);
+        uiRecordApi.getRecordUi.emit(mockRecordData);
     });
 
 
