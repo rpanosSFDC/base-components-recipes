@@ -5,10 +5,10 @@
  * For full license text, see the LICENSE file in the repo root or https://opensource.org/licenses/MIT
  */
 
-const wireSfdcMocks = require('lwc-wire-service-sfdc-mocks');
+const { createLdsTestWireAdapter } = require('@salesforce/wire-service-jest-util');
 const lightningUiRecordApi = {
-    getRecordCreateDefaults: wireSfdcMocks.getRecordCreateDefaults,
-    getRecordUi: wireSfdcMocks.getRecordUi
+    getRecordCreateDefaults: createLdsTestWireAdapter(),
+    getRecordUi: createLdsTestWireAdapter(),
 };
 
 module.exports = lightningUiRecordApi;
